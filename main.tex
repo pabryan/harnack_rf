@@ -98,10 +98,96 @@ for any smooth function \(f\).
 \section{The Harnack Inequality}
 \label{sec:harnack}
 
+Let us define \(u = \ln \R\). Then the Harnack inequality is equivalent to
+\begin{equation}
+\label{eq:harnack_equiv}
+\partial_t u - \frac{1}{2} \abs{\nabla u}_{\ric}^2 \geq - \frac{1}{t}.
+\end{equation}
+Our approach here motivated by the differential Harnack inequality of \cite{LiYau:/1986} (see also \cite{Hamilton:/1986,HamiltonCao:/2009}), is to define
+\begin{equation}
+\label{eq:harnack_Q}
+Q = \partial_t u - \frac{1}{2} \abs{\nabla u}_{\ric}^2
+\end{equation}
+and show that
+\[
+(\partial_t - \Delta) Q \geq Q^2 + g(X_t, \grad Q)
+\]
+where \(X_t\) is a time-dependent vector field depending on \(g\) and \(\ric\). Letting \(\bar{Q}_0 = \min\{0, \inf_{x\in M} Q(x, 0)\}\), and \(q(t) = -\tfrac{1}{t - \bar{Q}_0^{-1}}\) be the solution of \(\partial_t q = q^2\), \(q(0) = -\bar{Q}_0^{-1}\), the maximum principle implies that,
+\[
+Q \geq -\frac{1}{t - \bar{Q}_0^{-1}} \geq -\frac{1}{t}
+\]
+for all \(t > 0\) which is the desired Harnack inequality.
+
+The second term in equation \eqref{eq:harnack_Q} is required because of the evolution of the metric and is not present in \cite{LiYau:/1986}. Computing \(\partial_t - \Delta\) of this term is rather tedious, so next we introduce a method to avoid it entirely!
+
 \subsection{Reparametrisation}
 \label{subsec:harnack_reparam}
 
-\subsection{Li-Yau Harnack Inequality}
-\label{subsec:harnack_liyau}
+The key step to make the computation significantly more tractable is to reparametrise the flow. From the assumption \(\ric \geq K_0 g\) with \(K_0 > 0\) we see that \(\ric\) is a metric. Hence we may define,
+\[
+\xi_t = \frac{1}{2} \grad_{\ric} u
+\]
+by the requirement that,
+\[
+\ric_t (\xi_t, X) = \frac{1}{2} du_t \cdot X
+\]
+for any tangent vector \(X\).
+
+Now let \(\varphi_t\) be the smooth isotopy such that \(\varphi_0 = \Id_M\) and \(\partial_t \varphi_t = \xi_t\) and define,
+\[
+\bar{g}_t = \varphi_t^{\ast} g_t.
+\]
+
+Given a tensor \(T\) derived from \(g\) we write \(\bar{T} = \phi_t^{\ast} T\) for the corresponding tensor derived from \(\bar{g}\). In particular \(\bar{\R} = \phi_t^{\ast} \R = \R(\bar{g})\), \(\bar{\ric} = \phi_t^{\ast} \ric = \ric(\bar{g})\), and \(\bar{u} = \phi_t^{\ast} u = \ln \bar{\R} = \ln \R(\bar{g})\).
+
+When there are time derivatives involved, such as in the definition of \(Q\) we must also account for the time variation. The evolution of the metric \(\bar{g}\) is,
+\begin{equation}
+\label{eq:rf_reparam}
+\partial_t \bar{g}_t = - 2\bar{\ric}_t + \lie_{\bar{\xi}_t} \bar{g}_t
+\end{equation}
+where
+\[
+\xi_t = (\phi_t)_{\ast} \bar{\xi_t}
+\]
+so that,
+\[
+\bar{\xi}_t = (\phi_t^{-1})_{\ast} \xi_t = \frac{1}{2} \grad_{\bar{\ric}_t} \bar{u}.
+\]
+
+For any time dependent tensor, we have the relation,
+\begin{equation}
+\label{eq:dt_reparam}
+\begin{split}
+\partial_t \bar{T}_t &= \partial_t \phi_t^{\ast} T_t = \phi_t^{\ast} \partial_t T + \phi_t^{\ast} \lie_{\xi_t} T_t \\
+&= \overline{\partial_t T_t} + \lie_{\bar{\xi}_t} \bar{T}_t.
+\end{split}
+\end{equation}
+
+In particular, defining \(\bar{Q} = \partial_t \bar{u}\) gives,
+\[
+\bar{Q} = \frac{1}{\bar{R}} \left(\bar{\Delta} \bar{R} + 2 \abs{\bar{\ric}}^2\right) - \frac{1}{2} \abs{\overline{\grad} \bar{u}}_{\bar{\ric}}^2 + \lie_{\bar{\xi}} \bar{u}.
+\]
+But,
+\[
+\begin{split}
+\lie_{\bar{\xi}} \bar{u} &= d\bar{u} \cdot \bar{\xi} = \bar{\ric} \left(\bar{\xi}, \overline{\grad}_{\bar{\ric}} \bar{u}\right) \\
+&= \frac{1}{2} \bar{\ric} \left(\overline{\grad}_{\bar{\ric}} \bar{u}, \overline{\grad}_{\bar{\ric}} \bar{u}\right) \\
+&= \frac{1}{2} \abs{\overline{\grad} \bar{u}}_{\bar{\ric}}^2
+\end{split}
+\]
+so that
+\begin{equation}
+\label{eq:harnack_Q_reparm}
+\bar{Q} = \frac{1}{\bar{R}} \left(\bar{\Delta} \bar{R} + 2 \abs{\bar{\ric}}^2\right).
+\end{equation}
+
+Thus by an appropriate choice of reparametrisation, we have removed the second term in the definition of \(Q\) \eqref{eq:harnack_Q}. The Harnack inequality is now reduced to showing
+\begin{equation}
+\label{eq:harnack_reparam}
+\bar{Q} \geq - \frac{1}{t}.
+\end{equation}
+
+\subsection{Maximum Principle For Q}
+\label{subsec:harnack_Q}
 
 \end{document}
