@@ -5,7 +5,7 @@
 \begin{document}
 
 \title[Harnack For Ricci Flow]
- {A Li-Yau Approach To The Ricci Flow Harnack Inequality}
+ {The Ricci Flow Harnack Inequality Via Reparametrisation}
 
 \curraddr{}
 \email{}
@@ -22,6 +22,12 @@
 
 \section{Introduction}
 \label{sec:intro}
+
+The Ricci flow is the highly studied evolution equation,
+\[
+\partial_t g_t = - 2\ric (g_t)
+\]
+for a smooth, one-parameter family of metrics \(g_t\) on a smooth manifold \(M^n\) of dimension \(n\).
 
 \section{Notation and Conventions}
 \label{sec:conventions}
@@ -81,6 +87,13 @@ Notice we trace on the first and fourth slot of \(\Rm\).
 
 \subsection{Basic Evolution Equations}
 \label{subsec:evolution}
+
+We require remarkably little evolution equations to obtain the Harnack. All we require is that under the Ricci flow we have,
+\begin{align}
+\partial_t \R &= \laplace \R + 2 \abs{\ric}^2 \label{eq:R_ev} \\
+[\partial_t, \laplace] f &= 2 g(\ric, \nabla^2 f) \label{eq:R_commutator}
+\end{align}
+for any smooth function \(f\).
 
 \section{The Harnack Inequality}
 \label{sec:harnack}
