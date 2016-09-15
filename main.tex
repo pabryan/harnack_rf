@@ -1,0 +1,94 @@
+\documentclass{amsart}
+
+\input{StandardPaper2.tex}
+
+\begin{document}
+
+\title[Harnack For Ricci Flow]
+ {A Li-Yau Approach To The Ricci Flow Harnack Inequality}
+
+\curraddr{}
+\email{}
+\date{\today}
+
+\dedicatory{}
+\subjclass[2010]{}
+\keywords{}
+
+\begin{abstract}
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+\section{Notation and Conventions}
+\label{sec:conventions}
+
+\subsection{Curvature Conventions}
+\label{subsec:conventions_curvature}
+
+We take the convention for the curvature tensor that,
+\[
+\Rm(X, Y) Z = \nabla_X \nabla_Y - \nabla_ Y \nabla_X - \nabla_{[X, Y]} Z = \nabla^2_{X, Y} Z - \nabla^2_{Y, X} Z
+\]
+where
+\[
+\nabla^2_{X, Y} Z = \nabla^2 Z (X, Y) = \nabla_X \nabla_Y Z - \nabla_{\nabla_X Y} Z
+\]
+is the second covariant derivative of \(Z\). The \((0, 4)\) metric contraction of \(\Rm\) is defined by
+\[
+\Rm(X, Y, Z, W) = g(\Rm(X, Y)Z, W).
+\]
+
+The Ricci tensor is the trace in the first position:
+\[
+\ric(X, Y) = \Tr (Z \mapsto \Rm(Z, X)Y)
+\]
+Since the metric is non-degenerate, we can define the Ricci operator \(\ricop\), by
+\[
+\ric(X, Y) = g(\ricop(X), Y) = g(X, \ricop(Y))
+\]
+the second equality because the symmetries of \(\Rm\) imply that \(\ric\) is symmetric. The scalar curvature is then the trace of \(\ricop\):
+\[
+\scalarcurv = \Tr \ricop.
+\]
+
+With respect to a frame \(\{e_i\}\) with dual frame \(\{\theta^i\}\) we write the curvature tensor as,
+\[
+\Rm = {\Rm_{ijk}}^l \theta^i \otimes \theta^j \otimes \theta^k \otimes e_l
+\]
+so that
+\[
+{\Rm_{ijk}}^l = (\Rm(e_i, e_j) e_k) (\theta^l) = \theta^l (\Rm(e_i, e_j) e_k)
+\]
+where in the first equality we identify the vector \(\Rm(e_i, e_j)e_k\) as an element of the double dual via the formula \(X(\alpha) = \alpha(X)\) for \(X\) a vector and \(\alpha\) a one-form.
+
+The metric contraction is then on the last index,
+\[
+\Rm_{ijkl} = \Rm(e_i, e_j, e_k, e_l) = g(\Rm(e_i, e_j) e_k, e_l) = {\Rm_{ijk}}^mg_{ml}
+\]
+with reverse contraction,
+\[
+{\Rm_{ijk}}^l = \Rm_{ijkm} g^{ml}.
+\]
+The Ricci tensor is then
+\[
+\ric_{ij} = \ric(e_i, e_j) = {\Rm_{lij}}^l = \Rm_{lijm} g^{ml}.
+\]
+Notice we trace on the first and fourth slot of \(\Rm\).
+
+\subsection{Basic Evolution Equations}
+\label{subsec:evolution}
+
+\section{The Harnack Inequality}
+\label{sec:harnack}
+
+\subsection{Reparametrisation}
+\label{subsec:harnack_reparam}
+
+\subsection{Li-Yau Harnack Inequality}
+\label{subsec:harnack_liyau}
+
+\end{document}
