@@ -211,7 +211,7 @@ X = .
 
 Let us begin with the easier task of dealing with,
 \[
-P = \frac{1}{\R} \left(\laplace \R + 2\abs{\R}^2\right).
+P = \frac{1}{\R} \left(\laplace \R + 2\abs{\ric}^2\right) = \frac{\partial_t \R}{\R}.
 \]
 Despite our claims above about using the reparametrisation to simplify computations, for this part it is simpler to compute \(\partial_t P\) in the original parametrisation and then convert to the reparametrised flow.
 
@@ -228,6 +228,32 @@ Recall the equations,
 \partial_t \R &= \laplace \R + 2 \abs{\ric}^2 \tag{\ref{eq:R_ev} revisited}, \\
 [\partial_t, \laplace] f &= 2 g(\ric, \nabla^2 f) \tag{\ref{eq:R_commutator} revisited}.
 \end{align*}
+
+Then we compute,
+\[
+\begin{split}
+\partial_t P &= \frac{1}{\R} \left[\partial_t \laplace \R + 2 \partial_t \abs{\ric}^2\right] - \frac{\partial_t \R}{R^2} \left[\laplace \R + 2 \abs{\ric}^2\right] \\
+&= \frac{1}{\R} \laplace \partial_t \R + \frac{2}{\R} g(\ric, \nabla^2 \R) + \frac{2}{\R} \partial_t \abs{\ric}^2 - P^2.
+\end{split}
+\]
+
+On the other hand,
+\[
+\nabla P = \nabla \frac{\partial_t \R}{\R} = \frac{1}{\R} \nabla \partial_t \R - \frac{P}{\R} \nabla \ln \R.
+\]
+and
+\[
+\begin{split}
+\laplace P &= \laplace \left(\frac{\partial_t \R}{\R}\right) \\
+&= \frac{1}{\R} \laplace \partial_t \R + \partial_t \R \laplace \frac{1}{\R} + 2 g\left(\nabla \partial_t \R, \nabla \frac{1}{\R}\right) \\
+&= \frac{1}{\R} \laplace \partial_t \R + \partial_t \R \laplace \frac{1}{\R} - 2 g\left(\frac{1}{\R} \nabla \partial_t \R, \nabla \ln \R\right) \\
+&= \frac{1}{\R} \laplace \partial_t \R + \partial_t \R \laplace \frac{1}{\R} - 2 g\left(\nabla P, \nabla \ln \R\right) + 2\frac{P}{R} \abs{\nabla \ln \R}^2.
+\end{split}
+\]
+Thus,
+\[
+(\partial_t - \laplace) P = 2 g\left(\nabla P, \nabla \ln \R\right) - P^2 - \frac{2}{R} \abs{\nabla \ln \R}^2 P + \frac{2}{\R} g(\ric, \nabla^2 \R) + \frac{2}{\R} \partial_t \abs{\ric}^2 - \partial_t \R \laplace \frac{1}{\R}.
+\]
 \end{proof}
 
 \begin{proof}[Proof of \Cref{prop:Q_maxprinciple}]
