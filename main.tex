@@ -189,7 +189,72 @@ so that
 \partial_t \bar{u} = \frac{1}{\bar{\R}} \left(\overline{\laplace} \bar{\R} + 2\abs{\bar{\ric}}^2\right) - \frac{\bar{\R}}{2} \abs{\overline{\grad} \bar{u}}_{\bar{\ric}}^2 = \bar{Q}.
 \end{equation}
 
-\subsection{Maximum Principle For Q}
+\subsection{Maximum Principle For \(\bar{Q}\)}
 \label{subsec:harnack_Q}
+
+We just saw that \(\bar{Q}\) does not contain the additional term in \(Q\) resulting from the evolution of the metric. However, we have achieved this at the expense of introducing additional terms into the evolution of \(g\) and so too \(\Rm, \ric, \R\) etc. In the end, effectively we must compute the evolution of the same quantity,
+\[
+\frac{1}{\bar{\R}} \left(\overline{\laplace} \bar{\R} + 2\abs{\bar{\ric}}^2\right) - \frac{\bar{\R}}{2} \abs{\overline{\grad} \bar{u}}_{\bar{\ric}}^2.
+\]
+What we have gained is that the computation is easier in the reparametrised flow. The proof of the Harnack inequality is obtained from the following Proposition.
+
+\begin{prop}
+\label{prop:Q_maxprinciple}
+\[
+(\partial_t - \bar{\Delta}) \bar{Q} \geq - \frac{1}{t} + \bar{g}(\overline{\grad} \bar{Q}, X)
+\]
+where
+\[
+X = .
+\]
+\end{prop}
+
+Let us begin with the easier task of dealing with,
+\[
+P = \frac{1}{\R} \left(\laplace \R + 2\abs{\R}^2\right).
+\]
+Despite our claims above about using the reparametrisation to simplify computations, for this part it is simpler to compute \(\partial_t P\) in the original parametrisation and then convert to the reparametrised flow.
+
+\begin{lemma}
+\label{lem:dtP}
+\[
+\partial_t P = \laplace P + g(\grad P, \cdot) + \cdots
+\]
+\end{lemma}
+
+\begin{proof}
+Recall the equations,
+\begin{align*}
+\partial_t \R &= \laplace \R + 2 \abs{\ric}^2 \tag{\ref{eq:R_ev} revisited}, \\
+[\partial_t, \laplace] f &= 2 g(\ric, \nabla^2 f) \tag{\ref{eq:R_commutator} revisited}.
+\end{align*}
+\end{proof}
+
+\begin{proof}[Proof of \Cref{prop:Q_maxprinciple}]
+
+\end{proof}
+
+\subsection{Proof Of The Harnack Inequality}
+\label{subsec:harnack_proof}
+
+Since \(Q \geq -1/t\) if and only if \(\bar{Q} \geq -1/t\), the Harnack inequality in the reparametrised setting now looks more like the original Li-Yau differential Harnack \cite{LiYau:/1986}. Then by the choice of reparametrisation, leading to equation \eqref{eq:dtu_reparm} and by \Cref{prop:Q_maxprinciple}, the Harnack inequality follows directly.
+
+\begin{proof}[Proof of \Cref{thm:harnack}]
+\Cref{prop:Q_maxprinciple} above gave us
+\[
+(\partial_t - \bar{\Delta}) \bar{Q} \geq - \frac{1}{t} + \bar{g}(\overline{\grad} \bar{Q}, X).
+\]
+Let \(\bar{Q}_0 = \min\{0, \inf_{x\in M} \bar{Q}(x, 0)\}\), and let \(q(t) = -\tfrac{1}{t - \bar{Q}_0^{-1}}\) be the solution of \(\partial_t q = q^2\), \(q(0) = -\bar{Q}_0^{-1}\). Then the maximum principle gives,
+\[
+\bar{Q} \geq -\frac{1}{t - \bar{Q}_0^{-1}} \geq -\frac{1}{t}
+\]
+for all \(t > 0\).
+
+Converting back,
+\[
+Q = \varphi_t^{-1}){\ast} \bar{Q} \geq -\tfrac{1}{t}
+\]
+proving equation \eqref{eq:harnack_equiv} which is equivalent to the Harnack inequality stated in the theorem.
+\end{proof}
 
 \end{document}
