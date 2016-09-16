@@ -29,6 +29,16 @@ The Ricci flow is the highly studied evolution equation,
 \]
 for a smooth, one-parameter family of metrics \(g_t\) on a smooth manifold \(M^n\) of dimension \(n\).
 
+We prove the Trace-Harnack inequality for the Ricci flow.
+
+\begin{thm}[Trace Harnack Inequality For Ricci Flow\cite{Hamilton:/1993}]
+\label{thm:harnack}
+Let \((M, g)\) be a solution of the Ricci flow with \(\ric \geq K_0 g\) for some \(K_0 > 0\). Then,
+\[
+\partial_t \R - \abs{\nabla \R}_{\ric}^2 + \frac{\R}{t} \geq 0.
+\]
+\end{thm}
+
 \section{Notation and Conventions}
 \label{sec:conventions}
 
@@ -98,49 +108,47 @@ for any smooth function \(f\).
 \section{The Harnack Inequality}
 \label{sec:harnack}
 
-Let us define \(u = \ln \R\). Then the Harnack inequality is equivalent to
+Our approach here is motivated by the differential Harnack inequality of \cite{LiYau:/1986} (see also \cite{Hamilton:/1986,HamiltonCao:/2009}). Let us define \(u = \ln \R\). Then the Harnack inequality is equivalent to
 \begin{equation}
 \label{eq:harnack_equiv}
-\partial_t u - \frac{1}{2} \abs{\nabla u}_{\ric}^2 \geq - \frac{1}{t}.
+\partial_t u - \frac{\R}{2} \abs{\nabla u}_{\ric}^2 \geq - \frac{1}{t}.
 \end{equation}
-Our approach here motivated by the differential Harnack inequality of \cite{LiYau:/1986} (see also \cite{Hamilton:/1986,HamiltonCao:/2009}), is to define
-\begin{equation}
-\label{eq:harnack_Q}
-Q = \partial_t u - \frac{1}{2} \abs{\nabla u}_{\ric}^2
-\end{equation}
-and show that
-\[
-(\partial_t - \Delta) Q \geq Q^2 + g(X_t, \grad Q)
-\]
-where \(X_t\) is a time-dependent vector field depending on \(g\) and \(\ric\). Letting \(\bar{Q}_0 = \min\{0, \inf_{x\in M} Q(x, 0)\}\), and \(q(t) = -\tfrac{1}{t - \bar{Q}_0^{-1}}\) be the solution of \(\partial_t q = q^2\), \(q(0) = -\bar{Q}_0^{-1}\), the maximum principle implies that,
-\[
-Q \geq -\frac{1}{t - \bar{Q}_0^{-1}} \geq -\frac{1}{t}
-\]
-for all \(t > 0\) which is the desired Harnack inequality.
 
-The second term in equation \eqref{eq:harnack_Q} is required because of the evolution of the metric and is not present in \cite{LiYau:/1986}. Computing \(\partial_t - \Delta\) of this term is rather tedious, so next we introduce a method to avoid it entirely!
+Recalling the evolution of \(\R\) \eqref{eq:R_ev}, let us define
+\begin{equation}
+\label{eq:Q}
+Q = \frac{1}{\R} \left(\laplace \R + 2\abs{\ric}^2\right) - \frac{\R}{2} \abs{\nabla u}_{\ric}^2
+\end{equation}
+so that the Harnack inequality becomes,
+\[
+Q \geq - \frac{1}{t}.
+\]
+The strategy is to compute \((\partial_t - \laplace) Q\) and apply the maximum principle. The second term in the definition of \(Q\) \eqref{eq:Q} is required because of the evolution of the metric and is not present in \cite{LiYau:/1986}. Computing \((\partial_t - \Delta)\) of this term is rather tedious, so next we introduce a reparametrisation \(\bar{g} = \varphi_t^{\ast} g\) in which this term dissapears and the Harnack inequality is transformed to
+\[
+\partial_t \bar{u} \geq - \frac{1}{t}.
+\]
 
 \subsection{Reparametrisation}
 \label{subsec:harnack_reparam}
 
 The key step to make the computation significantly more tractable is to reparametrise the flow. From the assumption \(\ric \geq K_0 g\) with \(K_0 > 0\) we see that \(\ric\) is a metric. Hence we may define,
 \[
-\xi_t = \frac{1}{2} \grad_{\ric} u
+\xi_t = \frac{1}{2} \grad_{\ric_t} \R_t
 \]
 by the requirement that,
 \[
-\ric_t (\xi_t, X) = \frac{1}{2} du_t \cdot X
+\ric_t (\xi_t, X) = \frac{1}{2} d\R_t \cdot X
 \]
 for any tangent vector \(X\).
 
-Now let \(\varphi_t\) be the smooth isotopy such that \(\varphi_0 = \Id_M\) and \(\partial_t \varphi_t = \xi_t\) and define,
+Now let \(\varphi_t\) be the flow of \(X_t\) starting at \(t = 0\), namely the smooth isotopy such that \(\varphi_0 = \Id_M\) and \(\partial_t \varphi_t = \xi_t\). Define
 \[
 \bar{g}_t = \varphi_t^{\ast} g_t.
 \]
 
 Given a tensor \(T\) derived from \(g\) we write \(\bar{T} = \phi_t^{\ast} T\) for the corresponding tensor derived from \(\bar{g}\). In particular \(\bar{\R} = \phi_t^{\ast} \R = \R(\bar{g})\), \(\bar{\ric} = \phi_t^{\ast} \ric = \ric(\bar{g})\), and \(\bar{u} = \phi_t^{\ast} u = \ln \bar{\R} = \ln \R(\bar{g})\).
 
-When there are time derivatives involved, such as in the definition of \(Q\) we must also account for the time variation. The evolution of the metric \(\bar{g}\) is,
+When there are time derivatives involved, such as in the definition of \(\partial_t u\) we must also account for the time variation. First, the metric \(\bar{g}\) evolves by
 \begin{equation}
 \label{eq:rf_reparam}
 \partial_t \bar{g}_t = - 2\bar{\ric}_t + \lie_{\bar{\xi}_t} \bar{g}_t
@@ -151,40 +159,34 @@ where
 \]
 so that,
 \[
-\bar{\xi}_t = (\phi_t^{-1})_{\ast} \xi_t = \frac{1}{2} \grad_{\bar{\ric}_t} \bar{u}.
+\bar{\xi}_t = (\phi_t^{-1})_{\ast} \xi_t = \frac{1}{2} \grad_{\bar{\ric}_t} \bar{\R}.
 \]
 
 For any time dependent tensor, we have the relation,
 \begin{equation}
 \label{eq:dt_reparam}
 \begin{split}
-\partial_t \bar{T}_t &= \partial_t \phi_t^{\ast} T_t = \phi_t^{\ast} \partial_t T + \phi_t^{\ast} \lie_{\xi_t} T_t \\
+\partial_t \bar{T}_t &= \partial_t \phi_t^{\ast} T_t = \phi_t^{\ast} \partial_t T_t + \phi_t^{\ast} \lie_{\xi_t} T_t \\
 &= \overline{\partial_t T_t} + \lie_{\bar{\xi}_t} \bar{T}_t.
 \end{split}
 \end{equation}
 
-In particular, defining \(\bar{Q} = \partial_t \bar{u}\) gives,
+Applying \eqref{eq:dt_reparam} to \(\bar{u}\) and using the evolution of \(\R\) \eqref{eq:R_ev},
 \[
-\bar{Q} = \frac{1}{\bar{R}} \left(\bar{\Delta} \bar{R} + 2 \abs{\bar{\ric}}^2\right) - \frac{1}{2} \abs{\overline{\grad} \bar{u}}_{\bar{\ric}}^2 + \lie_{\bar{\xi}} \bar{u}.
+\partial_t \bar{u} = \frac{1}{\bar{\R}} \left(\overline{\laplace} \bar{\R} + 2\abs{\bar{\ric}}^2\right) + \lie_{\bar{\xi}} \bar{u}.
 \]
 But,
 \[
 \begin{split}
 \lie_{\bar{\xi}} \bar{u} &= d\bar{u} \cdot \bar{\xi} = \bar{\ric} \left(\bar{\xi}, \overline{\grad}_{\bar{\ric}} \bar{u}\right) \\
-&= \frac{1}{2} \bar{\ric} \left(\overline{\grad}_{\bar{\ric}} \bar{u}, \overline{\grad}_{\bar{\ric}} \bar{u}\right) \\
-&= \frac{1}{2} \abs{\overline{\grad} \bar{u}}_{\bar{\ric}}^2
+&= -\frac{1}{2} \bar{\ric} \left(\overline{\grad}_{\bar{\ric}} \bar{\R}, \overline{\grad}_{\bar{\ric}} \bar{u}\right) \\
+&= -\frac{\bar{\R}}{2} \abs{\overline{\grad} \bar{u}}_{\bar{\ric}}^2
 \end{split}
 \]
 so that
 \begin{equation}
-\label{eq:harnack_Q_reparm}
-\bar{Q} = \frac{1}{\bar{R}} \left(\bar{\Delta} \bar{R} + 2 \abs{\bar{\ric}}^2\right).
-\end{equation}
-
-Thus by an appropriate choice of reparametrisation, we have removed the second term in the definition of \(Q\) \eqref{eq:harnack_Q}. The Harnack inequality is now reduced to showing
-\begin{equation}
-\label{eq:harnack_reparam}
-\bar{Q} \geq - \frac{1}{t}.
+\label{eq:dtu_reparm}
+\partial_t \bar{u} = \frac{1}{\bar{\R}} \left(\overline{\laplace} \bar{\R} + 2\abs{\bar{\ric}}^2\right) - \frac{\bar{\R}}{2} \abs{\overline{\grad} \bar{u}}_{\bar{\ric}}^2 = \bar{Q}.
 \end{equation}
 
 \subsection{Maximum Principle For Q}
