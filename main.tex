@@ -239,20 +239,26 @@ Then we compute,
 
 On the other hand,
 \[
-\nabla P = \nabla \frac{\partial_t \R}{\R} = \frac{1}{\R} \nabla \partial_t \R - \frac{P}{\R} \nabla \ln \R.
+\nabla P = \partial_t \nabla u + [\nabla, \partial_t] u
 \]
 and
 \[
 \begin{split}
-\laplace P &= \laplace \left(\frac{\partial_t \R}{\R}\right) \\
-&= \frac{1}{\R} \laplace \partial_t \R + \partial_t \R \laplace \frac{1}{\R} + 2 g\left(\nabla \partial_t \R, \nabla \frac{1}{\R}\right) \\
-&= \frac{1}{\R} \laplace \partial_t \R + \partial_t \R \laplace \frac{1}{\R} - 2 g\left(\frac{1}{\R} \nabla \partial_t \R, \nabla \ln \R\right) \\
-&= \frac{1}{\R} \laplace \partial_t \R + \partial_t \R \laplace \frac{1}{\R} - 2 g\left(\nabla P, \nabla \ln \R\right) + 2\frac{P}{R} \abs{\nabla \ln \R}^2.
+\laplace P =& \partial_t \laplace \ln \R + [\laplace, \partial_t] \ln \R \\
+=& \partial_t \left(\frac{1}{\R} \laplace \R - g(\nabla \ln \R, \nabla \ln \R)\right) + 2g(\ric, \nabla^2 \ln \R) \\
+=& \frac{1}{\R} \partial_t \laplace \R - \frac{\laplace \R}{\R} P - 2 g(\partial_t \nabla \ln \R, \nabla \ln \R) + 2\ric(\nabla \ln \R, \nabla \ln \R) + 2g(\ric, \nabla^2 \ln \R) \\
+=& \frac{1}{\R} \partial_t \laplace \R - \frac{\laplace \R}{\R} P - 2 g(\nabla P, \nabla \ln \R) \\
+& + 2 g([\nabla, \partial_t] u, \nabla \ln \R) + 2\ric(\nabla \ln \R, \nabla \ln \R) + 2g(\ric, \nabla^2 \ln \R) 
 \end{split}
 \]
+
 Thus,
 \[
-(\partial_t - \laplace) P = 2 g\left(\nabla P, \nabla \ln \R\right) - P^2 - \frac{2}{R} \abs{\nabla \ln \R}^2 P + \frac{2}{\R} g(\ric, \nabla^2 \R) + \frac{2}{\R} \partial_t \abs{\ric}^2 - \partial_t \R \laplace \frac{1}{\R}.
+\begin{split}
+(\partial_t - \laplace) P =& 2 g(\nabla \ln \R, \nabla P) + \frac{\laplace \R}{\R} P - P^2 \\
+& - 2 g([\nabla, \partial_t] u, \nabla \ln \R) - 2\ric(\nabla \ln \R, \nabla \ln \R) + \frac{2}{\R} \partial_t \abs{\ric}^2 \\
+& + \frac{2}{\R} g(\ric, \nabla^2 (\R - \ln \R)).
+\end{split}
 \]
 \end{proof}
 
